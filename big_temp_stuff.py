@@ -1,4 +1,8 @@
 import csv
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 Avg_Max = []
 Avg_Min = []
 TMIN = 200
@@ -104,3 +108,61 @@ with open("BigData2016.csv", newline='') as csvfile:
                             TMIN[8] = float(row['TMIN'])
     for x in range(len(channel)):
         print(f'{channel[x]}: Max Temp = {TMAX[x]}, Min Temp = {TMIN[x]}')
+        
+# libraries
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+x = np.array([1,2,3,4,5,6,7,8,9])
+y = TMAX
+y1 = TMIN
+
+plt.plot(x, y, label='Maximum')
+plt.plot(x,y1, 'r-.', label='Minimum')
+
+leg = plt.legend(loc='center')
+plt.xlabel("Channel")
+plt.ylabel("Temperature")
+plt.title("Weather Channel's Maximums and Minimums Temperature")
+
+plt.show()
+
+'''# Make a data frame
+df=pd.DataFrame({'x': range(1,11), 'y1': np.random.randn(10), 'y2': np.random.randn(10)+range(1,11), 'y3': np.random.randn(10)+range(11,21), 'y4': np.random.randn(10)+range(6,16), 'y5': np.random.randn(10)+range(4,14)+(0,0,0,0,0,0,0,-3,-8,-6), 'y6': np.random.randn(10)+range(2,12), 'y7': np.random.randn(10)+range(5,15), 'y8': np.random.randn(10)+range(4,14) })
+
+# Change the style of plot
+plt.style.use('seaborn-darkgrid')
+
+# set figure size
+my_dpi=100
+plt.figure(figsize=(5, 5), dpi=my_dpi)
+ 
+# plot multiple lines
+for column in df.drop('x', axis=1):
+    plt.plot(df['x'], df[column], marker='', color='grey', linewidth=1, alpha=0.5)
+
+# Now re do the interesting curve, but biger with distinct color
+plt.plot(df['x'], df['y5'], marker='', color='blue', linewidth=3, alpha=0.5)
+ 
+# Change x axis limit
+plt.xlim(0,12)
+ 
+# Let's annotate the plot
+num=0
+for i in df.values[9][1:]:
+    num+=1
+    name=list(df)[num]
+    if name != 'y5':
+        plt.text(10, i, name, horizontalalignment='right', size='small', color='grey')
+
+# And add a special annotation for the group we are interested in
+plt.text(10, df.y5.tail(1), 'Mr Orange', horizontalalignment='right', size='small', color='orange')
+ 
+# Add titles
+plt.title("Weather Channel's Maxs and Mins", loc='left', fontsize=12, fontweight=0, color='Green')
+plt.xlabel("Temperature")
+plt.ylabel("Channel")
+
+# Show the graph
+plt.show()'''
