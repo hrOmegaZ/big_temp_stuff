@@ -8,6 +8,16 @@ Avg_Min = []
 TMIN = 200
 TMAX = 0
 
+ARD2m = []
+BEAVm = []
+BOISm = []
+CENTm = []
+NRMNm = []
+STILm = []
+TISHm = []
+TULNm = []
+WOODm = []
+
 ARD2 = []
 BEAV = []
 BOIS = []
@@ -31,39 +41,39 @@ with open("BigData2016.csv", newline='') as csvfile:
             else:
                 if row['STID'] == channel[x]:
                     if x == 0:
-                        ARD2.append((float(row["TMAX"])))
+                        ARD2m.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[0]:
                             TMAX[0] = float(row['TMAX'])
                     elif x == 1:
-                        BEAV.append((float(row["TMAX"])))
+                        BEAVm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[1]:
                             TMAX[1] = float(row['TMAX'])
                     elif x == 2:
-                        BOIS.append((float(row["TMAX"])))
+                        BOISm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[2]:
                             TMAX[2] = float(row['TMAX'])
                     elif x == 3:
-                        CENT.append((float(row["TMAX"])))
+                        CENTm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[3]:
                             TMAX[3] = float(row['TMAX'])
                     elif x == 4:
-                        NRMN.append((float(row["TMAX"])))
+                        NRMNm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[4]:
                             TMAX[4] = float(row['TMAX'])
                     elif x == 5:
-                        STIL.append((float(row["TMAX"])))
+                        STILm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[5]:
                             TMAX[5] = float(row['TMAX'])
                     elif x == 6:
-                        TISH.append((float(row["TMAX"])))
+                        TISHm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[6]:
                             TMAX[6] = float(row['TMAX'])
                     elif x == 7:
-                        TULN.append((float(row["TMAX"])))
+                        TULNm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[7]:
                             TMAX[7] = float(row['TMAX'])
                     else:
-                        WOOD.append((float(row["TMAX"])))
+                        WOODm.append((float(row["TMAX"])))
                         if float(row['TMAX']) > TMAX[8]:
                             TMAX[8] = float(row['TMAX'])
             if float(row['TMIN']) > 200 or float(row['TMIN']) < -200:
@@ -108,21 +118,56 @@ with open("BigData2016.csv", newline='') as csvfile:
                             TMIN[8] = float(row['TMIN'])
     for x in range(len(channel)):
         print(f'{channel[x]}: Max Temp = {TMAX[x]}, Min Temp = {TMIN[x]}')
-        
-# libraries
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 
-x = np.array([1,2,3,4,5,6,7,8,9])
-y = TMAX
-y1 = TMIN
+x = []
+for lel in range(len(ARD2m)):
+    x.append(lel)
+y = ARD2m
+x1 = []
+for lel in range(len(BEAVm)):
+    x1.append(lel)
+y1 = BEAVm
+x2 = []
+for lel in range(len(BOISm)):
+    x2.append(lel)
+y2 = BOISm
+x3 = []
+for lel in range(len(CENTm)):
+    x3.append(lel)
+y3 = CENTm
+x4 = []
+for lel in range(len(NRMNm)):
+    x4.append(lel)
+y4 = NRMNm
+x5 = []
+for lel in range(len(STILm)):
+    x5.append(lel)
+y5 = STILm
+x6 = []
+for lel in range(len(TISHm)):
+    x6.append(lel)
+y6 = TISHm
+x7 = []
+for lel in range(len(TULNm)):
+    x7.append(lel)
+y7 = TULNm
+x8 = []
+for lel in range(len(WOODm)):
+    x8.append(lel)
+y8 = WOODm
 
-plt.plot(x, y, label='Maximum')
-plt.plot(x,y1, 'r-.', label='Minimum')
+plt.plot(x, y, label='ARD2')
+plt.plot(x1,y1, label='BEAV')
+plt.plot(x2,y2, label='BOIS')
+plt.plot(x3,y3, label='CENT')
+plt.plot(x4,y4, label='NRMN')
+plt.plot(x5,y5, label='STIL')
+plt.plot(x6,y6, label='TISH')
+plt.plot(x7,y7, label='TULN')
+plt.plot(x8,y8, label='WOOD')
 
-leg = plt.legend(loc='center')
-plt.xlabel("Channel")
+leg = plt.legend(loc='lower center')
+plt.xlabel("Day")
 plt.ylabel("Temperature")
 plt.title("Weather Channel's Maximums and Minimums Temperature")
 
